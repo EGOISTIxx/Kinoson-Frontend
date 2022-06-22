@@ -38,7 +38,7 @@ export const LoginPage: React.FC = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (values: Values) => {
-    const response = await api
+    await api
       .post('/auth/local/signin', {
         email: values.email,
         password: values.password,

@@ -40,7 +40,7 @@ export const RegistrationPage: React.FC = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (values: Values) => {
-    const response = await api
+    await api
       .post('/auth/local/signup', {
         username: values.username,
         email: values.email,
