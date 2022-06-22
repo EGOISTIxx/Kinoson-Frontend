@@ -24,7 +24,7 @@ export const FilterContainer = styled.div`
   flex-wrap: wrap;
 `
 
-export const ContainerItem = styled.div`
+export const ContainerItem: any = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,7 +56,7 @@ export const ItemSelect = styled(Select)`
 
 export const SelectOption = styled(Option)``
 
-export const ItemSlider = styled(Slider)`
+export const ItemSlider: any = styled(Slider)`
   width: 80%;
 
   .ant-slider-track {
