@@ -1,11 +1,13 @@
 import styled, { css } from 'styled-components'
 import { ReactComponent as KinopoiskLogo } from '../../Assets/Images/kinopoisk.svg'
 import { ReactComponent as IMDbLogo } from '../../Assets/Images/imdb.svg'
-import { Button, Form } from 'antd'
+import { Button, Form, Collapse } from 'antd'
 import {
   UserOutlined,
   SendOutlined,
 } from '@ant-design/icons'
+
+const { Panel } = Collapse
 
 export const SUserOutlined = styled(UserOutlined)`
   color: ${(props) => props.theme.colors.gray.gray2};
@@ -257,6 +259,70 @@ export const CommentsBlock = styled.div`
     margin: 25px 0;
     & > * {
     }
+  }
+`
+
+export const CollapseWrapper = styled(Collapse)`
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 50px;
+`
+
+export const CustomPanel = styled(Panel)`
+  margin-bottom: 65px;
+  border-bottom: 1px solid
+    ${(props) => props.theme.colors.gray.gray2} !important;
+  border-radius: 7px;
+
+  &:first-child {
+    box-shadow: 0px 4px 50px rgba(254, 243, 199, 0.59);
+  }
+
+  &:nth-child(2) {
+    box-shadow: 0px 4px 50px rgba(251, 191, 36, 0.59);
+  }
+
+  &:last-child {
+    box-shadow: 0px 4px 50px rgba(217, 119, 6, 0.59);
+    margin-bottom: 0;
+  }
+
+  .ant-collapse-header {
+    font-size: 16px;
+  }
+
+  .ant-collapse-content-box {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+
+    .ant-radio-button-wrapper-checked {
+      border-color: ${(props) =>
+        props.theme.colors.yellow.yellow4} !important;
+      border-right-color: ${(props) =>
+        props.theme.colors.yellow.yellow4} !important;
+      border-left-color: ${(props) =>
+        props.theme.colors.yellow.yellow4} !important;
+      border-top-color: ${(props) =>
+        props.theme.colors.yellow.yellow4} !important;
+      border-bottom-color: ${(props) =>
+        props.theme.colors.yellow.yellow4} !important;
+
+      &::before {
+        background-color: ${(props) =>
+          props.theme.colors.yellow.yellow4} !important;
+      }
+    }
+
+    .ant-radio-button-wrapper {
+      background: transparent;
+      color: ${(props) => props.theme.colors.gray.gray2};
+    }
+  }
+
+  & > * {
+    color: ${(props) =>
+      props.theme.colors.gray.gray2} !important;
   }
 `
 

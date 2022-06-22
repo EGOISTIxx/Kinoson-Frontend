@@ -1,9 +1,11 @@
 import React, {
   useCallback,
   useContext,
+  useEffect,
   useRef,
+  useState,
 } from 'react'
-import { Form } from 'antd'
+import { Form, Radio } from 'antd'
 import ActorsSlider from '../../Components/ActorsSlider/ActorsSlider'
 import Comments from '../../Components/Comments/Comments'
 import Player from '../../Components/Player/Player'
@@ -17,8 +19,10 @@ import {
   PopularityTitle,
 } from '../Main/SMain'
 import {
+  CollapseWrapper,
   CommentsBlock,
   ContentInfo,
+  CustomPanel,
   Desc,
   Description,
   FavouritesButton,
@@ -52,6 +56,8 @@ export const WatchPage: React.FC = () => {
     setCurrentFilm,
   } = useContext<any>(WatchContext)
 
+  const [watchData, setWatchData] = useState(null)
+
   const { userData, setUserData } =
     useContext<any>(UserContext)
 
@@ -61,6 +67,14 @@ export const WatchPage: React.FC = () => {
         film?.filmId === currentFilm?.id
     )
   )
+
+  useEffect(() => {
+    if (currentFilm?.type === 'serial') {
+      setWatchData(
+        JSON.parse(currentFilm.watch)[0].data[0].watch
+      )
+    }
+  }, [currentFilm])
 
   const handleAddToFavourites = useCallback(
     async (filmId) => {
@@ -231,7 +245,7 @@ export const WatchPage: React.FC = () => {
               </div>
             ))}
         </GalleryWrapper>
-        <Player player={currentFilm.watch} />
+        <Player player={watchData || currentFilm.watch} />
         <SGroup>
           <RaitingButton
             view='like'
@@ -273,7 +287,44 @@ export const WatchPage: React.FC = () => {
             Из избранного
           </FavouritesButton>
         )}
-
+        {currentFilm.type === 'serial' && (
+          <Radio.Group
+            defaultValue={`${
+              JSON.parse(currentFilm.watch)[0].title
+            }_${
+              JSON.parse(currentFilm.watch)[0].data[0].watch
+            }`}
+            onChange={(e) => {
+              setWatchData(e.target.value.split('_')[1])
+            }}
+            style={{ maxWidth: '1200px', width: '100%' }}>
+            {JSON.parse(currentFilm.watch).map(
+              (serialItem: {
+                title: string
+                data: object[]
+              }) => {
+                return (
+                  <CollapseWrapper bordered={false}>
+                    <CustomPanel
+                      header={serialItem.title}
+                      key={serialItem.title}>
+                      {serialItem.data.map(
+                        (seriesData: any) => {
+                          return (
+                            <Radio.Button
+                              value={`${serialItem.title}_${seriesData.watch}`}>
+                              {seriesData.title}
+                            </Radio.Button>
+                          )
+                        }
+                      )}
+                    </CustomPanel>
+                  </CollapseWrapper>
+                )
+              }
+            )}
+          </Radio.Group>
+        )}
         <PopularityTitle style={{ marginBottom: '5px' }}>
           Комментарии
         </PopularityTitle>
