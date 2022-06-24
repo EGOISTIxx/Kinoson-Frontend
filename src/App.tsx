@@ -14,6 +14,7 @@ import { SearchPage } from './Pages/Search/Search.page'
 import { FilmsPage } from './Pages/Films/Films.page'
 import { ProfilePage } from './Pages/Profile/Profile.page'
 import { SerialsPage } from './Pages/Serials/Serials.page'
+import { WelcomPage } from './Pages/Welcom/Welcom.page'
 
 const App = () => {
   const { checkAuth, authTokens, user } =
@@ -30,6 +31,7 @@ const App = () => {
       <Routes>
         {!user ? (
           <Route path='/auth/' element={<AuthLayout />}>
+            <Route path='welcom' element={<WelcomPage />} />
             <Route path='signin' element={<LoginPage />} />
             <Route
               path='signup'
@@ -47,10 +49,10 @@ const App = () => {
                 </WatchProvider>
               }
             />
-            <Route
+            {/* <Route
               path='buySubscribe'
               element={<SubscribePage />}
-            />
+            /> */}
             <Route path='search' element={<SearchPage />} />
             <Route path='films' element={<FilmsPage />} />
             <Route
@@ -64,7 +66,7 @@ const App = () => {
           path='*'
           element={
             <Navigate
-              to={user ? '/' : '/auth/signin'}
+              to={user ? '/' : '/auth/welcom'}
               replace
             />
           }

@@ -34,20 +34,14 @@ const Header: React.FC = () => {
       localStorage.removeItem('authTokens')
       navigate('/auth/signin', { replace: true })
     })
-    // .then(() => {
-    //   navigate('/auth/signin', { replace: true })
-    // })
-    // .finally(() => {
-    //   navigate('/auth/signin', { replace: true })
-    // })
   }
 
   const userList = (
     <>
       <CustomNavLink to={'me'}>Профиль</CustomNavLink>
-      <CustomNavLink to={'buySubscribe'}>
+      {/* <CustomNavLink to={'buySubscribe'}>
         Подписка
-      </CustomNavLink>
+      </CustomNavLink> */}
       <span
         onClick={handleClickExit}
         style={{ cursor: 'pointer' }}>

@@ -64,7 +64,7 @@ export const RegistrationPage: React.FC = () => {
           console.log(error.response)
         }
         notification.error({
-          message: `Ошибка авторизации`,
+          message: `Ошибка регистрации`,
           description: error.response.data.message,
           placement: 'bottomRight',
         })

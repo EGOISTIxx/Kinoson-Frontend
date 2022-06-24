@@ -7,12 +7,6 @@ import {
 } from './SAuthLayout.layout'
 
 const AuthLayout: React.FC = () => {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    navigate('/auth/signin', { replace: true })
-  }, [])
-
   return (
     <AuthLayoutWrapper>
       <VideoWrapper>
