@@ -54,6 +54,10 @@ export const STabs = styled(Tabs)`
   color: ${(props) =>
     props.theme.colors.gray.gray2} !important;
 
+  .ant-tabs-tabpane {
+    display: flex;
+  }
+
   .ant-tabs-ink-bar {
     background: ${(props) =>
       props.theme.colors.yellow.yellow4};
